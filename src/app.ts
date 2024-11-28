@@ -1,11 +1,13 @@
 import express, { Request, Response } from 'express'
+import productRouter from './module/stationeryProduct/stationeryProduct.router'
 
 const app = express()
 
 // middleware
 app.use(express.json())
 
-// POST API
+// API
+app.use('/api/products', productRouter)
 
 app.get('/', (req: Request, res: Response) => {
   res.send({
