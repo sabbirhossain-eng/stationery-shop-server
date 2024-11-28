@@ -36,9 +36,28 @@ const getProducts = async (req: Request, res: Response): Promise<void> => {
         handleError(error, res);
       }
   };
+//   GET products by ID
+
+const getProductById = async (req: Request, res: Response): Promise<void> => {
+    try {
+  
+        const productID = req.params.productID
+
+        const result = await productService.getProductById(productID)
+  
+      res.send({
+        message: "Products retrieved successfully",
+        success: true,
+        data: result,
+      });
+    } catch (error: unknown) {
+        handleError(error, res);
+      }
+  };
   
 
 export const productController = {
   createProduct,
   getProducts,
+  getProductById,
 };

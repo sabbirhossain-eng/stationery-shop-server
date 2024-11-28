@@ -24,10 +24,18 @@ const createProduct = async (payload: IProduct): Promise<IProduct> => {
     
     const result = Product.find({})
     return result
-  };
+  }
+
+//   GET by ID
+const getProductById = async (id: string) => {
+
+    const result = await Product.findById(id)
+    return result
+  }
 
   export const productService = {
     createProduct,
     getProducts,
+    getProductById,
   }
   
