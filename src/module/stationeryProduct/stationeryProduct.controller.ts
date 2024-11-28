@@ -66,9 +66,26 @@ const updateProduct = async (req: Request, res: Response): Promise<void> => {
         const result = await productService.updateProduct(productId, updatedDetails)
   
       res.send({
-        message: "Products retrieved successfully",
+        message: "Product updated successfully",
         success: true,
         data: result,
+      });
+    } catch (error: unknown) {
+        handleError(error, res);
+      }
+  };
+//   update product
+
+const deleteProduct= async (req: Request, res: Response): Promise<void> => {
+    try {
+  
+        const productId = req.params.productId 
+        await productService.deleteProduct(productId)
+  
+      res.send({
+        message: "Product deleted successfully",
+        success: true,
+        data: {},
       });
     } catch (error: unknown) {
         handleError(error, res);
@@ -81,4 +98,5 @@ export const productController = {
   getProducts,
   getProductById,
   updateProduct,
+  deleteProduct
 };
