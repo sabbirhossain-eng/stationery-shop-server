@@ -3,7 +3,7 @@ import { productService } from "./stationeryProduct.service";
 import { IProduct } from "./stationeryProduct.interface";
 import { handleError } from "../../handleError/handleError";
 
-const createProduct = async (req: Request, res: Response): Promise<void> => {
+const createProduct = async (req: Request, res: Response) => {
     try {
       const payload: IProduct = req.body;
   

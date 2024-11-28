@@ -1,6 +1,7 @@
-import { model, Schema, Types } from 'mongoose'
+import { model, Schema,} from 'mongoose'
+import { IOrder } from './order.interface'
 
-const orderSchema = new Schema({
+const orderSchema = new Schema<IOrder>({
   email: {
     type: String,
     required: [true, 'Please provide your email'],
@@ -13,7 +14,7 @@ const orderSchema = new Schema({
     },
   },
   product: {
-    type: Types.ObjectId,
+    type: Schema.Types.ObjectId,
     required: true,
   },
   quantity: {
@@ -27,7 +28,8 @@ const orderSchema = new Schema({
     min: 0,
     required: true,
   },
-})
+},
+{ timestamps: true })
 
-const Order = model('Order', orderSchema)
+const Order = model<IOrder>('Order', orderSchema)
 export default Order
