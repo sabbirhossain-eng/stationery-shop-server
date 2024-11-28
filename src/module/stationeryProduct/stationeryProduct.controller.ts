@@ -41,9 +41,29 @@ const getProducts = async (req: Request, res: Response): Promise<void> => {
 const getProductById = async (req: Request, res: Response): Promise<void> => {
     try {
   
-        const productID = req.params.productID
+        const productId = req.params.productId
 
-        const result = await productService.getProductById(productID)
+        const result = await productService.getProductById(productId)
+  
+      res.send({
+        message: "Products retrieved successfully",
+        success: true,
+        data: result,
+      });
+    } catch (error: unknown) {
+        handleError(error, res);
+      }
+  };
+//   update product
+
+const updateProduct = async (req: Request, res: Response): Promise<void> => {
+    try {
+  
+        const productId = req.params.productId
+
+        const updatedDetails = req.body
+
+        const result = await productService.updateProduct(productId, updatedDetails)
   
       res.send({
         message: "Products retrieved successfully",
@@ -60,4 +80,5 @@ export const productController = {
   createProduct,
   getProducts,
   getProductById,
+  updateProduct,
 };

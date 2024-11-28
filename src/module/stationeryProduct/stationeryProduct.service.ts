@@ -33,9 +33,22 @@ const getProductById = async (id: string) => {
     return result
   }
 
+//   Update Product
+
+const updateProduct = async (productId: string, updatedDetails: IProduct)  => {
+    const updatedProduct = await Product.findByIdAndUpdate(
+      productId,
+      updatedDetails,
+      { new: true } 
+    );
+    return updatedProduct;
+  };
+  
+
   export const productService = {
     createProduct,
     getProducts,
     getProductById,
+    updateProduct ,
   }
   
