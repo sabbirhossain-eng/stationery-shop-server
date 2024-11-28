@@ -3,7 +3,8 @@ import { productController } from "./stationeryProduct.controller"
 
 const productRouter = Router()
 
-productRouter.post('/create-product', productController.createProduct)
+productRouter.post('/', productController.createProduct)
+productRouter.get('/', productController.getProducts)
 
 
 export default productRouter
