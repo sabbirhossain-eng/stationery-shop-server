@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Request, Response } from "express";
 import { productService } from "./stationeryProduct.service";
 import { IProduct } from "./stationeryProduct.interface";
@@ -14,7 +15,7 @@ const createProduct = async (req: Request, res: Response) => {
         success: true,
         data: result,
       });
-    } catch (error: unknown) {
+    } catch (error: any) {
         handleError(error, res);
       }
   };
@@ -32,7 +33,7 @@ const getProducts = async (req: Request, res: Response): Promise<void> => {
         success: true,
         data: result,
       });
-    } catch (error: unknown) {
+    } catch (error: any) {
         handleError(error, res);
       }
   };
@@ -50,7 +51,7 @@ const getProductById = async (req: Request, res: Response): Promise<void> => {
         success: true,
         data: result,
       });
-    } catch (error: unknown) {
+    } catch (error: any) {
         handleError(error, res);
       }
   };
@@ -70,7 +71,7 @@ const updateProduct = async (req: Request, res: Response): Promise<void> => {
         success: true,
         data: result,
       });
-    } catch (error: unknown) {
+    } catch (error: any) {
         handleError(error, res);
       }
   };
@@ -87,7 +88,7 @@ const deleteProduct= async (req: Request, res: Response): Promise<void> => {
         success: true,
         data: {},
       });
-    } catch (error: unknown) {
+    } catch (error: any) {
         handleError(error, res);
       }
   };
