@@ -1,32 +1,227 @@
-# tour-and-travel-server
+# Stationery Shop Application
 
-User
-Tour
-Review
+A simple Express.js application developed with TypeScript that integrates MongoDB (using Mongoose) to manage a stationery shop. The application supports CRUD operations for stationery products and order management while ensuring data integrity using Mongoose schema validation.
 
-user {
-name
-email
-age
-photo
-role -> user, admin
-status -> active, inactive
+## Features
+
+- **Stationery Product Management:**
+  - Add, update, retrieve, and delete stationery products.
+  - Filter products by name, brand, or category using query parameters.
+  - Enum-based category validation for products.
+- **Order Management:**
+  - Place orders with inventory management (auto-update stock and handle insufficient stock errors).
+  - Calculate revenue from all orders using MongoDB aggregation.
+- **Error Handling:**
+  - Consistent error response structure with detailed validation errors and stack traces.
+
+## Technologies Used
+
+- **Backend Framework:** Express.js
+- **Language:** TypeScript
+- **Database:** MongoDB (with Mongoose for schema validation and data operations)
+- **Environment Management:** dotenv
+
+## Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/yourusername/stationery-shop.git
+   cd stationery-shop
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Create a `.env` file in the root directory and add the following variables:
+
+   ```env
+   PORT=5000
+   MONGO_URI=your_mongodb_connection_string
+   ```
+
+4. Start the server:
+
+   ```bash
+   npm run dev
+   ```
+
+   The application will be available at `http://localhost:5000`.
+
+## API Endpoints
+
+### API Overview
+
+| API Endpoint                | Method | Description                                         |
+|-----------------------------|--------|-----------------------------------------------------|
+| `/api/products`             | POST   | Create a new stationery product.                   |
+| `/api/products`             | GET    | Retrieve all products with optional search filters.|
+| `/api/products/:productId`  | GET    | Retrieve details of a specific product by ID.      |
+| `/api/products/:productId`  | PUT    | Update an existing product.                        |
+| `/api/products/:productId`  | DELETE | Delete a product by ID.                            |
+| `/api/orders`               | POST   | Place a new order.                                 |
+| `/api/orders/revenue`       | GET    | Calculate total revenue from all orders.           |
+
+### Stationery Products
+
+#### 1. Create a Product
+- **Endpoint:** `POST /api/products`
+- **Request Body:**
+  ```json
+  {
+    "name": "Notebook",
+    "brand": "Moleskine",
+    "price": 15,
+    "category": "Office Supplies",
+    "description": "A high-quality notebook for professionals.",
+    "quantity": 200,
+    "inStock": true
+  }
+  ```
+- **Response:**
+  ```json
+  {
+    "message": "Product created successfully",
+    "success": true,
+    "data": { ...productDetails }
+  }
+  ```
+
+#### 2. Get All Products
+- **Endpoint:** `GET /api/products`
+- **Query Parameters:**
+  - `searchTerm` (optional): Filter by name, brand, or category.
+- **Response:**
+  ```json
+  {
+    "message": "Products retrieved successfully",
+    "success": true,
+    "data": [ ...products ]
+  }
+  ```
+
+#### 3. Get a Specific Product
+- **Endpoint:** `GET /api/products/:productId`
+- **Response:**
+  ```json
+  {
+    "message": "Product retrieved successfully",
+    "success": true,
+    "data": { ...productDetails }
+  }
+  ```
+
+#### 4. Update a Product
+- **Endpoint:** `PUT /api/products/:productId`
+- **Request Body:**
+  ```json
+  {
+    "price": 18,
+    "quantity": 180
+  }
+  ```
+- **Response:**
+  ```json
+  {
+    "message": "Product updated successfully",
+    "success": true,
+    "data": { ...updatedProductDetails }
+  }
+  ```
+
+#### 5. Delete a Product
+- **Endpoint:** `DELETE /api/products/:productId`
+- **Response:**
+  ```json
+  {
+    "message": "Product deleted successfully",
+    "success": true,
+    "data": {}
+  }
+  ```
+
+### Orders
+
+#### 6. Place an Order
+- **Endpoint:** `POST /api/orders`
+- **Request Body:**
+  ```json
+  {
+    "email": "customer@example.com",
+    "product": "648a45e5f0123c45678d9012",
+    "quantity": 2,
+    "totalPrice": 36
+  }
+  ```
+- **Response:**
+  ```json
+  {
+    "message": "Order created successfully",
+    "success": true,
+    "data": { ...orderDetails }
+  }
+  ```
+
+#### 7. Calculate Revenue
+- **Endpoint:** `GET /api/orders/revenue`
+- **Response:**
+  ```json
+  {
+    "message": "Revenue calculated successfully",
+    "success": true,
+    "data": {
+      "totalRevenue": 720
+    }
+  }
+  ```
+
+## Error Handling
+
+Generic error responses follow this structure:
+
+```json
+{
+  "message": "Error message",
+  "success": false,
+  "error": { ...errorDetails },
+  "stack": "Error stack trace"
 }
+```
 
-tour {
-name
-duration
-rating
-price
-coverImage
-image[]
-startDate
-tourLocation
-}
+## Scripts
 
-review {
-review
-rating
-tour -> ref
-user -> ref
-}
+- `npm run dev`: Start the development server with live reloading.
+- `npm run build`: Compile TypeScript files.
+- `npm start`: Start the production server.
+
+## Folder Structure
+
+```
+stationery-shop/
+├── src/
+│   ├── controllers/
+│   ├── models/
+│   ├── routes/
+│   ├── utils/
+│   ├── app.ts
+│   ├── server.ts
+├── .env
+├── package.json
+├── tsconfig.json
+├── README.md
+```
+
+## Future Enhancements
+
+- Add user authentication and authorization.
+- Implement additional filtering and pagination for product queries.
+- Build a frontend to interact with the API.
+
+
+
+---
+
+Feel free to contribute by submitting issues or pull requests!
