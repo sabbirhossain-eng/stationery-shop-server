@@ -73,9 +73,11 @@ A simple Express.js application developed with TypeScript that integrates MongoD
 - `npm run build`: Compile TypeScript files.
 - `npm start`: Start the production server.
 
-## Folder Structure
+```
 
 ```
+## Folder Structure
+
 stationery-shop/
 ├── src/
 │   ├── controllers/
