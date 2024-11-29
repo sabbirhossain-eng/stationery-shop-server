@@ -90,6 +90,7 @@ stationery-shop/
 ├── package.json
 ├── tsconfig.json
 ├── README.md
+
 ```
 
 ## Future Enhancements
