@@ -1,4 +1,5 @@
-# Stationery Shop Application (👆 [Click here ](https://stationery-shop-server-iota.vercel.app/ "Live Link ")) 
+# Stationery Shop Application (👆 [Click here ](https://stationery-shop-server-iota.vercel.app/:target="_blank" "Live Link ")) 
+
 A simple Express.js application developed with TypeScript that integrates MongoDB (using Mongoose) to manage a stationery shop. The application supports CRUD operations for stationery products and order management while ensuring data integrity using Mongoose schema validation.
 
 ## Features
