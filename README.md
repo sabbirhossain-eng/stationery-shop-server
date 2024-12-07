@@ -6,7 +6,7 @@ A simple Express.js application developed with TypeScript that integrates MongoD
 ## Features
 
 - **Stationery Product Management:**
-  - Add, update, retrieve, and delete stationery products.
+  - Add, update, get and delete stationery products.
   - Filter products by name, brand, or category using query parameters.
   - Enum-based category validation for products.
 - **Order Management:**
